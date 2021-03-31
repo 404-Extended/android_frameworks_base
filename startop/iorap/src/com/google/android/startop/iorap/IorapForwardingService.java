@@ -62,7 +62,7 @@ public class IorapForwardingService extends SystemService {
     /** $> adb shell 'setprop log.tag.IorapForwardingService VERBOSE' */
     public static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     /** $> adb shell 'setprop ro.iorapd.enable true' */
-    private static boolean IS_ENABLED = SystemProperties.getBoolean("ro.iorapd.enable", true);
+    private static boolean IS_ENABLED = SystemProperties.getBoolean("ro.iorapd.enable", false);
     /** $> adb shell 'setprop iorapd.forwarding_service.wtf_crash true' */
     private static boolean WTF_CRASH = SystemProperties.getBoolean(
             "iorapd.forwarding_service.wtf_crash", false);
@@ -158,7 +158,7 @@ public class IorapForwardingService extends SystemService {
         // These two mendel flags should match those in iorapd native process
         // system/iorapd/src/common/property.h
         boolean isTracingEnabled =
-            getMendelFlag("iorap_perfetto_enable", "iorapd.perfetto.enable", true);
+            getMendelFlag("iorap_perfetto_enable", "iorapd.perfetto.enable", false);
         boolean isReadAheadEnabled =
             getMendelFlag("iorap_readahead_enable", "iorapd.readahead.enable", false);
         // Same as the property in iorapd.rc -- disabling this will mean the 'iorapd' binder process
